@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,8 +27,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 export class Login {
   loginForm: FormGroup;
   hidePassword = true;
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
+  constructor() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -37,9 +43,15 @@ export class Login {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Form Submitted', this.loginForm.value);
       alert('Se procederá a validar las credenciales de acceso');
-      this.router.navigate(['/dashboard']);
+      const { username, password } = this.loginForm.value;
+      
+      if (this.authService.login(username, password)) {
+        console.log('Login exitoso');
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.errorMessage = 'Credenciales incorrectas. Intenta con admin / 1234';
+      }
     }
   }
 }
