@@ -1,0 +1,52 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1 class="page-title">Dashboard</h1>
+    <p class="page-subtitle">Bienvenido al sistema académico</p>
+  </header>
+
+  <div class="stats-grid">
+    <div class="stat-card" *ngFor="let stat of stats">
+      <div class="stat-icon-container" [ngClass]="stat.colorClass">
+        <span class="material-icons">{{stat.icon}}</span>
+      </div>
+      <div class="stat-info">
+        <span class="stat-title">{{stat.title}}</span>
+        <span class="stat-value">{{stat.value}}</span>
+      </div>
+      <div class="stat-trend">
+        <span class="material-icons trend-icon">trending_up</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-content-grid">
+    <!-- Chart Section -->
+    <div class="panel-card chart-panel">
+      <h2 class="panel-title">Estudiantes por Curso</h2>
+      <div class="chart-container">
+        <div class="chart-wrapper">
+          <div class="pie-chart"></div>
+          <span class="chart-label label-kinder">Kinder 21%</span>
+          <span class="chart-label label-prekinder">Pre-Kinder 20%</span>
+          <span class="chart-label label-maternal">Maternal 14%</span>
+          <span class="chart-label label-prebasicab">Pre-Básica B 22%</span>
+          <span class="chart-label label-prebasicaa">Pre-Básica A 22%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activities Section -->
+    <div class="panel-card activities-panel">
+      <h2 class="panel-title">Actividades Recientes</h2>
+      <div class="activities-list">
+        <div class="activity-item" *ngFor="let act of activities">
+          <div class="activity-tag" [ngClass]="act.tagClass">{{act.type}}</div>
+          <div class="activity-details">
+            <p class="activity-text">{{act.text}}</p>
+            <span class="activity-time">{{act.time}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

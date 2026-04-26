@@ -1,0 +1,207 @@
+.dashboard-container {
+  font-family: 'Inter', sans-serif;
+}
+
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  border: 1px solid #eaedf2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.stat-icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.stat-icon-container .material-icons {
+  color: white;
+  font-size: 24px;
+}
+
+.icon-blue { background-color: #2196f3; }
+.icon-green { background-color: #00e676; }
+.icon-purple { background-color: #e040fb; }
+.icon-orange { background-color: #ff5722; }
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-title {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1;
+}
+
+.stat-trend {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.trend-icon {
+  color: #00e676;
+  font-size: 20px;
+}
+
+/* Bottom Grid */
+.dashboard-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.panel-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  border: 1px solid #eaedf2;
+  min-height: 350px;
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 24px 0;
+}
+
+/* Activities List */
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.activity-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.activity-tag {
+  padding: 4px 0;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  width: 90px;
+  text-align: center;
+}
+
+.tag-blue { background-color: #e3f2fd; color: #1976d2; }
+.tag-green { background-color: #e8f5e9; color: #388e3c; }
+.tag-purple { background-color: #f3e5f5; color: #7b1fa2; }
+.tag-orange { background-color: #fff3e0; color: #f57c00; }
+
+.activity-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.activity-text {
+  margin: 0;
+  font-size: 14px;
+  color: #334155;
+  font-weight: 400;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* Chart */
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 300px;
+}
+
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pie-chart {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #b388ff 0% 21%,     /* Kinder */
+    #69f0ae 21% 41%,    /* Pre-Kinder */
+    #448aff 41% 55%,    /* Maternal */
+    #ff80ab 55% 77%,    /* Pre-Básica B */
+    #ff9100 77% 100%    /* Pre-Básica A */
+  );
+  border: 3px solid white;
+}
+
+.chart-label {
+  position: absolute;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Placing labels around the pie chart based on visual reference */
+.label-kinder { top: 35%; left: 10%; color: #b388ff; }
+.label-prekinder { top: 5%; left: 50%; transform: translateX(-50%); color: #69f0ae; }
+.label-maternal { top: 35%; right: 5%; color: #448aff; }
+.label-prebasicab { bottom: 15%; right: 10%; color: #ff80ab; }
+.label-prebasicaa { bottom: 15%; left: 10%; color: #ff9100; }
