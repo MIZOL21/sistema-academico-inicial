@@ -1,0 +1,47 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #f5f5f5;
+}
+
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.login-form {
+  padding-top: 20px;
+}
+
+.message-banner {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.message-banner.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.message-banner.error {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.header-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="shadow-sm">
+  <span routerLink="/" style="cursor: pointer;">Unidad Educativa "Nuevo Horizonte"</span>
+
+  <span class="spacer"></span>
+
+  @if (authService.currentUser()) {
+  <span class="me-3" style="font-size: 0.9rem;">
+    Bienvenido, {{ authService.currentUser() }}
+  </span>
+  <button mat-flat-button color="warn" (click)="logout()">Cerrar Sesión</button>
+  } @else {
+  <button mat-button routerLink="/login">Iniciar Sesión</button>
+  }
+</mat-toolbar>

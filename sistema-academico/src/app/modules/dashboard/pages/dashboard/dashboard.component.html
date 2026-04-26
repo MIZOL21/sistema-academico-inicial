@@ -1,0 +1,30 @@
+<div class="dashboard-container p-4">
+  <div class="header-section mb-5">
+    <h1 class="mat-h1 fw-bold main-title">Panel de Gestión Académica</h1>
+    <p class="text-muted subtitle">Bienvenido, <span class="user-highlight">{{ authService.currentUser() }}</span></p>
+  </div>
+
+  <div class="modules-grid">
+    @for (module of modules; track module.name) {
+    <mat-card class="module-card shadow-lg" [ngClass]="module.color">
+      <mat-card-header>
+        <div mat-card-avatar class="icon-circle shadow-sm">
+          <mat-icon>{{ module.icon }}</mat-icon>
+        </div>
+        <mat-card-title class="fw-bold">{{ module.name }}</mat-card-title>
+        <mat-card-subtitle>Gestión Escolar</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="pt-3 pb-2 text-content">
+        <p>{{ module.description }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end" class="p-3">
+        <button mat-button class="config-btn border-0">CONFIGURAR</button>
+        <button mat-raised-button class="open-btn shadow-sm">ABRIR</button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+
+</div>

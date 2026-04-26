@@ -1,0 +1,41 @@
+<div class="login-container">
+  <mat-card class="login-card shadow">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image">
+        <mat-icon color="primary" style="transform: scale(1.5);">account_circle</mat-icon>
+      </div>
+      <mat-card-title>Bienvenido</mat-card-title>
+      <mat-card-subtitle>Ingresa a tu cuenta escolar</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="login-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="Ej. administrador" name="user" [(ngModel)]="user" required>
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" placeholder="Tu clave secreta" name="pass" [(ngModel)]="pass" required>
+          <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width py-2" [disabled]="!loginForm.form.valid">
+          INGRESAR
+        </button>
+      </form>
+
+      @if (message()) {
+        <div class="message-banner" [ngClass]="isError() ? 'error' : 'success'">
+          {{ message() }}
+        </div>
+      }
+    </mat-card-content>
+    
+    <mat-card-footer class="text-center pb-3">
+      <small class="text-muted">Unidad Educativa "Nuevo Horizonte"</small>
+    </mat-card-footer>
+  </mat-card>
+</div>
