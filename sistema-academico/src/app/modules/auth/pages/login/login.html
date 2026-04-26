@@ -38,6 +38,13 @@
           <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
         </div>
 
+        <!-- Error Message -->
+        @if (errorMessage) {
+          <div class="error-banner mb-3 text-danger small text-center fw-bold">
+            {{ errorMessage }}
+          </div>
+        }
+
         <!-- Submit Button -->
         <button mat-flat-button color="primary" class="submit-button" type="submit" [disabled]="loginForm.invalid">
           Ingresar
