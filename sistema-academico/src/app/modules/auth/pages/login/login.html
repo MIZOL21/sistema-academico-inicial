@@ -1,0 +1,49 @@
+<div class="login-page-container">
+  <div class="login-card">
+    
+    <!-- Left Side: Illustration -->
+    <div class="login-illustration">
+      <img src="assets/images/school_illustration.png" alt="School Illustration">
+    </div>
+
+    <!-- Right Side: Form -->
+    <div class="login-form-section">
+      <div class="login-header">
+        <img src="assets/images/logo_educacion.png" alt="Logo Educación" class="logo">
+        <h1 class="title">Sistema Académico</h1>
+        <h2 class="subtitle">Educación Inicial</h2>
+        <p class="instruction">Inicia sesión para continuar</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        
+        <!-- Username Field -->
+        <mat-form-field appearance="outline" class="full-width custom-input">
+          <mat-icon matPrefix>person_outline</mat-icon>
+          <input matInput placeholder="Usuario" formControlName="username">
+        </mat-form-field>
+
+        <!-- Password Field -->
+        <mat-form-field appearance="outline" class="full-width custom-input">
+          <mat-icon matPrefix>lock_outline</mat-icon>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Contraseña" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button" aria-label="Toggle password visibility">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- Form Options -->
+        <div class="form-options">
+          <mat-checkbox formControlName="rememberMe">Recordarme</mat-checkbox>
+          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <!-- Submit Button -->
+        <button mat-flat-button color="primary" class="submit-button" type="submit" [disabled]="loginForm.invalid">
+          Ingresar
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

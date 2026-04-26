@@ -1,0 +1,147 @@
+/* Base page layout */
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Light gray/blue background */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Main card */
+.login-card {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 900px;
+  min-height: 550px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Left side: Illustration */
+.login-illustration {
+  flex: 1;
+  display: none; /* Hidden by default, shown on larger screens */
+  background-color: #e4f0fa;
+}
+
+.login-illustration img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .login-illustration {
+    display: block;
+    max-width: 50%;
+  }
+}
+
+/* Right side: Form container */
+.login-form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header .logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.login-header .title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a56db; /* Blue color matching the image */
+}
+
+.login-header .subtitle {
+  margin: 5px 0 15px 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #10b981; /* Green color matching the image */
+}
+
+.login-header .instruction {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Material overrides for inputs to match the image style */
+::ng-deep .custom-input .mdc-text-field--outlined {
+  --mdc-outlined-text-field-container-shape: 12px;
+}
+
+::ng-deep .custom-input .mat-mdc-form-field-flex {
+  padding-left: 10px;
+}
+
+::ng-deep .custom-input .mat-icon {
+  color: #6b7280; /* Gray icons */
+}
+
+/* Form Options */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  margin-top: -10px;
+  font-size: 14px;
+}
+
+.forgot-password {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #2563eb;
+  color: white;
+}
+
+/* Material checkbox override for color */
+::ng-deep .mat-mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background {
+  border-color: #2563eb !important;
+  background-color: #2563eb !important;
+}
