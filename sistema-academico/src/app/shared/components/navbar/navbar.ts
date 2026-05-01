@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,9 +15,11 @@ import { Router } from '@angular/router';
 })
 export class Navbar {
   private router = inject(Router);
+  public authService = inject(AuthService);
 
   logout() {
-    console.log('Cerrar sesión');
+    this.authService.logout();
+    console.log('Sesion cerrada');
     this.router.navigate(['/login']);
   }
 

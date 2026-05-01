@@ -1,0 +1,74 @@
+.container {
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.grades-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.grade-input {
+  width: 60px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.grade-input:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 4px rgba(63, 81, 181, 0.3);
+}
+
+.grade-input:disabled {
+  background: #f9f9f9;
+  border-color: transparent;
+  color: #333;
+}
+
+.grade-badge {
+  padding: 6px 12px;
+  border-radius: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-block;
+  min-width: 40px;
+  text-align: center;
+}
+
+.excelente { background-color: #4caf50; }
+.aprobado { background-color: #2196f3; }
+.reprobado { background-color: #f44336; }
+
+.qualitative-text {
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.qualitative-text.excelente { background: #e8f5e9; color: #2e7d32; }
+.qualitative-text.aprobado { background: #e3f2fd; color: #1565c0; }
+.qualitative-text.reprobado { background: #ffebee; color: #c62828; }
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

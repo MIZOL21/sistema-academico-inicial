@@ -1,20 +1,20 @@
 <nav class="navbar">
   <div class="user-profile" [matMenuTriggerFor]="userMenu">
     <div class="user-info">
-      <span class="user-name">Admin Usuario</span>
-      <span class="user-role">Administrador</span>
+      <span class="user-name">{{ authService.currentUser() }}</span>
+      <span class="user-role">{{ authService.currentRole() }}</span>
     </div>
     <div class="user-avatar">
-      AU
+      {{ authService.currentUser()?.substring(0, 2)?.toUpperCase() }}
     </div>
   </div>
 
   <mat-menu #userMenu="matMenu" xPosition="before" class="custom-user-menu">
     <div class="menu-header">
-      <div class="avatar-large">AU</div>
+      <div class="avatar-large">{{ authService.currentUser()?.substring(0, 2)?.toUpperCase() }}</div>
       <div class="info-large">
-        <span class="name">Admin Usuario</span>
-        <span class="role">Administrador</span>
+        <span class="name">{{ authService.currentUser() }}</span>
+        <span class="role">{{ authService.currentRole() }}</span>
       </div>
     </div>
     <mat-divider></mat-divider>

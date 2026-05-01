@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>{{ isEdit ? 'Editar Estudiante' : 'Nuevo Estudiante' }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="studentForm" class="student-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Cédula</mat-label>
+        <input matInput formControlName="cedula" placeholder="Ej. 0912345678">
+        <mat-error *ngIf="studentForm.get('cedula')?.hasError('required')">Cédula es requerida</mat-error>
+        <mat-error *ngIf="studentForm.get('cedula')?.hasError('pattern')">Cédula debe tener 10 dígitos</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombres</mat-label>
+        <input matInput formControlName="nombre" placeholder="Ej. Juan">
+        <mat-error *ngIf="studentForm.get('nombre')?.hasError('required')">Nombre es requerido</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Apellidos</mat-label>
+        <input matInput formControlName="apellido" placeholder="Ej. Pérez">
+        <mat-error *ngIf="studentForm.get('apellido')?.hasError('required')">Apellido es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Correo Electrónico</mat-label>
+        <input matInput formControlName="correo" placeholder="Ej. juan@example.com">
+        <mat-error *ngIf="studentForm.get('correo')?.hasError('required')">Correo es requerido</mat-error>
+        <mat-error *ngIf="studentForm.get('correo')?.hasError('email')">Correo inválido</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" placeholder="Ej. 0998877665">
+        <mat-error *ngIf="studentForm.get('telefono')?.hasError('required')">Teléfono es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput type="date" formControlName="fechaNacimiento">
+        <mat-error *ngIf="studentForm.get('fechaNacimiento')?.hasError('required')">Fecha es requerida</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()" [disabled]="studentForm.invalid">Guardar</button>
+</mat-dialog-actions>

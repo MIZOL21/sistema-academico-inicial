@@ -1,0 +1,64 @@
+.container {
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.date-picker {
+  width: 220px;
+}
+
+.student-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alert-icon {
+  color: #f44336;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.row-alert {
+  background-color: #fffde7;
+}
+
+.asistencia-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.mat-column-estado {
+  width: 400px;
+  text-align: right;
+}
+
+/* Estilos para los botones de toggle */
+.btn-presente.mat-button-toggle-checked { background-color: #4caf50 !important; color: white !important; }
+.btn-ausente.mat-button-toggle-checked { background-color: #f44336 !important; color: white !important; }
+.btn-atraso.mat-button-toggle-checked { background-color: #ff9800 !important; color: white !important; }
+.btn-justificado.mat-button-toggle-checked { background-color: #2196f3 !important; color: white !important; }
+
+.footer-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}

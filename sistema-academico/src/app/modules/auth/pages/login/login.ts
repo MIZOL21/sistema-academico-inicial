@@ -50,7 +50,7 @@ export class Login {
         console.log('Login exitoso');
         this.router.navigate(['/dashboard']);
       } else {
-        this.errorMessage = 'Credenciales incorrectas. Intenta con admin / 1234';
+        this.errorMessage = 'Credenciales incorrectas. (admin, docente o estudiante / 1234)';
       }
     }
   }

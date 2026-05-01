@@ -1,0 +1,166 @@
+<div class="container" [ngClass]="authService.currentRole()?.toLowerCase()">
+  <div class="header">
+    <h1>
+      {{ authService.isAdmin() ? 'Gestión de Estudiantes' : 
+         authService.currentRole() === 'DOCENTE' ? 'Seguimiento Académico' : 'Compañeros de Clase' }}
+    </h1>
+    <button mat-raised-button color="primary" (click)="openDialog()" *ngIf="authService.isAdmin()">
+      <mat-icon>add</mat-icon> Nuevo Estudiante
+    </button>
+  </div>
+
+  <!-- Panel de Estadísticas (Solo para Docentes) -->
+  <div class="stats-grid" *ngIf="authService.currentRole() === 'DOCENTE'">
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="primary">people</mat-icon>
+        <mat-card-title>{{ dataSource.data.length }}</mat-card-title>
+        <mat-card-subtitle>Total Estudiantes</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="accent">grade</mat-icon>
+        <mat-card-title>8.4</mat-card-title>
+        <mat-card-subtitle>Promedio Grupal</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar color="warn">event_busy</mat-icon>
+        <mat-card-title>92%</mat-card-title>
+        <mat-card-subtitle>Asistencia Promedio</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Filtrar estudiantes</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Juan" #input>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <!-- Vista de Tabla (Admin y Docente) -->
+  <div class="mat-elevation-z8 table-container" *ngIf="authService.currentRole() !== 'ESTUDIANTE'">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Cédula Column -->
+      <ng-container matColumnDef="cedula">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cédula </th>
+        <td mat-cell *matCellDef="let row"> {{row.cedula}} </td>
+      </ng-container>
+
+      <!-- Nombre Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estudiante </th>
+        <td mat-cell *matCellDef="let row"> 
+          <div class="name-with-avatar">
+            <div class="mini-avatar" [style.background-color]="getAvatarColor(row.id)">
+              {{ getInitials(row.nombre, row.apellido) }}
+            </div>
+            <span>{{row.nombre}} {{row.apellido}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Correo Column -->
+      <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+        <td mat-cell *matCellDef="let row"> {{row.correo}} </td>
+      </ng-container>
+
+      <!-- Teléfono Column (Solo Admin) -->
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
+        <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
+      </ng-container>
+
+      <!-- Promedio Column (Solo Docente) -->
+      <ng-container matColumnDef="promedio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Promedio </th>
+        <td mat-cell *matCellDef="let row"> 
+          <div class="progress-cell">
+            <span [class.text-warn]="row.promedio < 7">{{row.promedio}}</span>
+            <mat-progress-bar mode="determinate" [value]="row.promedio * 10" [color]="row.promedio < 7 ? 'warn' : 'primary'"></mat-progress-bar>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Asistencia Column (Solo Docente) -->
+      <ng-container matColumnDef="asistencia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Asistencia </th>
+        <td mat-cell *matCellDef="let row"> 
+          <span class="badge" [style.background-color]="row.asistencia < 80 ? '#ff5252' : '#4caf50'">
+            {{row.asistencia}}%
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Acciones Column (Admin) -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="accent" (click)="openDialog(row)" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteStudent(row.id)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Acciones Column (Docente) -->
+      <ng-container matColumnDef="acciones_docente">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" matTooltip="Pasar Asistencia">
+            <mat-icon>how_to_reg</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" matTooltip="Ver Calificaciones">
+            <mat-icon>assignment</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="10">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Seleccionar página"></mat-paginator>
+  </div>
+
+  <!-- Vista de Tarjetas (Estudiantes) -->
+  <div class="cards-grid" *ngIf="authService.currentRole() === 'ESTUDIANTE'">
+    <mat-card class="student-card" *ngFor="let row of dataSource.filteredData">
+      <div class="card-header-bg" [style.background-color]="getAvatarColor(row.id)"></div>
+      <mat-card-content>
+        <div class="avatar-large-container">
+          <div class="avatar-large" [style.background-color]="getAvatarColor(row.id)">
+            {{ getInitials(row.nombre, row.apellido) }}
+          </div>
+        </div>
+        <div class="student-info">
+          <h3>{{row.nombre}} {{row.apellido}}</h3>
+          <p class="email">
+            <mat-icon>email</mat-icon> {{row.correo}}
+          </p>
+          <mat-divider></mat-divider>
+          <div class="card-actions">
+            <button mat-button color="primary">
+              <mat-icon>send</mat-icon> Enviar Mensaje
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    
+    <div class="no-data-cards" *ngIf="dataSource.filteredData.length === 0">
+      <mat-icon>search_off</mat-icon>
+      <p>No se encontraron compañeros con ese nombre.</p>
+    </div>
+  </div>
+</div>
