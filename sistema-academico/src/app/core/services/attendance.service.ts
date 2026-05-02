@@ -127,6 +127,12 @@ export class AttendanceService {
     }
   }
 
+  deleteGrade(studentId: number, materia: string): void {
+    this.gradeRecords = this.gradeRecords.filter(r => !(r.studentId === studentId && r.materia === materia));
+    this.saveGrades();
+    this.gradesSubject.next(this.gradeRecords);
+  }
+
   getAbsenceCount(studentId: number): number {
     return this.attendanceRecords.filter(r => r.studentId === studentId && r.status === 'ausente').length;
   }

@@ -3,6 +3,7 @@ import { authRoutes } from './modules/auth/auth.routes';
 import { Layout } from './shared/components/layout/layout';
 import { DasboardHome } from './modules/dashboard/dasboard-home/dasboard-home';
 import { UnderConstruction } from './shared/components/under-construction/under-construction';
+import { Estudiantes } from './modules/estudiantes/estudiantes';
 import { Asistencia } from './modules/asistencia/asistencia';
 import { Calificaciones } from './modules/calificaciones/calificaciones';
 
@@ -13,7 +14,7 @@ export const routes: Routes = [
     component: Layout,
     children: [
       { path: 'dashboard', component: DasboardHome },
-      { path: 'estudiantes', component: UnderConstruction },
+      { path: 'estudiantes', component: Estudiantes },
       { path: 'docentes', component: UnderConstruction },
       { path: 'cursos', component: UnderConstruction },
       { path: 'paralelos', component: UnderConstruction },
