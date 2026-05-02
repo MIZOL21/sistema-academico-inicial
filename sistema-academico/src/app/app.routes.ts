@@ -8,6 +8,7 @@ import { Asistencia } from './modules/asistencia/asistencia';
 import { Calificaciones } from './modules/calificaciones/calificaciones';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   ...authRoutes,
   {
     path: '',
@@ -24,7 +25,6 @@ export const routes: Routes = [
       { path: 'tareas', component: UnderConstruction },
       { path: 'perfil', component: UnderConstruction },
       { path: 'configuracion', component: UnderConstruction },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
   { path: '**', redirectTo: 'login' }
